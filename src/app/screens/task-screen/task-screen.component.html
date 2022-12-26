@@ -1,0 +1,45 @@
+<div class="container mt-4">
+    <h2 class="bg-warning p-2 fw-bold text-center">Task Manager APP</h2>
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="fw-bold">Task List</h3>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-success float-end" [routerLink]="'/new-task-list'">New Task List</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="list-group">
+                        <a [routerLink]="['/task-list', item._id]" *ngFor="let item of taskLists" class="list-group-item d-flex justify-content-between align-items-center">
+                          {{item.title}}
+                          <span (click)="deleteTaskList(item)" class="badge bg-danger rounded-pill">X</span>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-12">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="fw-bold">Linked Tasks</h3>
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-success float-end" (click)="addNewTask()">New Task</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="list-group">
+                        <li style="cursor: pointer;" [class.mark-completed] = "item.completed==true" *ngFor="let item of tasks" (click)="taskClicked(item)" class="list-group-item d-flex justify-content-between align-items-center">
+                          {{item.title}}
+                          <span (click)="deleteTask(item)" class="badge bg-danger rounded-pill">X</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
